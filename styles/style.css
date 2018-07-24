@@ -8,12 +8,15 @@ html {
   box-sizing: border-box;
 }
 body {
-  display: grid;
-  grid-template-rows: 600px 1fr auto;
-  border-top: 5px solid #76c38f;
+  min-width: 320px;
 }
-.content {
+.block-style {
   padding: 40px 120px;
+}
+@media (max-width: 767px) {
+  .block-style {
+    padding: 10px;
+  }
 }
 h1 {
   font-size: 46px;
@@ -38,6 +41,7 @@ button,
 }
 header {
   background-color: #290000;
+  border-top: 5px solid #76c38f;
 }
 header .menu {
   display: flex;
@@ -51,20 +55,25 @@ header .menu .brand .description-brand-name {
   font-size: 11px;
   color: #979797;
 }
-header .menu .nav-pills .nav-link {
+header .menu .nav-pills .nav-item {
+  display: inline-block;
+  width: auto;
+}
+header .menu .nav-pills .nav-item .nav-link {
   color: #ffffff;
   text-transform: uppercase;
   text-decoration: none;
   font-size: 13px;
+  padding: 5px;
 }
-header .menu .nav-pills .nav-link:hover {
+header .menu .nav-pills .nav-item .nav-link:hover {
   color: #76c38f;
 }
-header .menu .nav-pills .nav-link.active {
+header .menu .nav-pills .nav-item .nav-link.active {
   background-color: #76c38f;
   border-radius: 15%;
 }
-header .menu .nav-pills .nav-link.active.active:hover {
+header .menu .nav-pills .nav-item .nav-link.active.active:hover {
   color: #ffffff;
 }
 header #carouselExampleControls {
@@ -72,7 +81,6 @@ header #carouselExampleControls {
 }
 header #carouselExampleControls .carousel-content {
   display: flex;
-  width: calc(90%);
   justify-content: space-between;
   margin: 0 auto;
 }
@@ -104,20 +112,56 @@ header #carouselExampleControls .carousel-control-prev {
   width: 20px;
 }
 header #carouselExampleControls .carousel-control-prev-icon {
-  background-image: url(images/icon-carousel-left.png);
+  background-image: url(../images/icon-carousel-left.png);
   height: 30px;
 }
 header #carouselExampleControls .carousel-control-next-icon {
   height: 30px;
-  background-image: url(images/icon-carousel-right.png);
+  background-image: url(../images/icon-carousel-right.png);
+}
+@media (min-width: 300px) and (max-width: 767px) {
+  header .brand {
+    display: none;
+  }
+  header h1 {
+    font-size: 32px;
+  }
+  header #carouselExampleControls .carousel-content {
+    margin: 0 5px;
+  }
+  header #carouselExampleControls .carousel-content .carousel-image img {
+    width: 200px;
+    height: 200px;
+    border: 5px solid #6b6b6b;
+  }
+}
+@media (max-width: 576px) {
+  header #carouselExampleControls .carousel-content {
+    margin: 0 5px;
+  }
+  header #carouselExampleControls .carousel-content .carousel-image {
+    display: none;
+  }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  header #carouselExampleControls .carousel-content {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  header #carouselExampleControls .carousel-content .carousel-image img {
+    width: 350px;
+    height: 350px;
+    border: 7px solid #6b6b6b;
+  }
 }
 main {
   background-color: #660000;
 }
 main .actual-work {
   display: grid;
-  grid-template-columns: repeat(4, minmax(305px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(250px, auto));
   grid-column-gap: 20px;
+  grid-row-gap: 10px;
 }
 main .actual-work .actual-work-block {
   text-align: center;
@@ -156,7 +200,7 @@ main .line .line-description {
 }
 main .latest-work {
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(auto-fit, minmax(320px, auto));
   grid-template-rows: repeat(2, auto);
   grid-column-gap: 40px;
   grid-row-gap: 40px;
@@ -183,6 +227,29 @@ main .latest-work .latest-work-block:hover {
 }
 main .latest-work .latest-work-block:hover div {
   visibility: hidden;
+}
+@media (max-width: 576px) {
+  main .actual-work {
+    margin: 5px;
+  }
+  main .actual-work img {
+    display: none;
+  }
+  main .line {
+    margin: 10px 0;
+  }
+  main .latest-work {
+    grid-row-gap: 10px;
+  }
+}
+@media (min-width: 577px) and (max-width: 767px) {
+  main .actual-work {
+    margin: 5px;
+  }
+  main .latest-work {
+    grid-row-gap: 10px;
+    grid-column-gap: 0;
+  }
 }
 footer {
   background-color: #303030;
@@ -235,4 +302,19 @@ footer .footer-blocks button {
   font-size: 12px;
   border-radius: 4px;
   max-width: 75px;
+}
+footer .copyright {
+  background-color: #2b2b2b;
+}
+@media (max-width: 767px) {
+  footer h3 {
+    margin-bottom: 10px;
+  }
+  footer .from-the-blog,
+  footer .latest-tweets {
+    display: none;
+  }
+  footer .quick-links hr {
+    width: 50%;
+  }
 }
